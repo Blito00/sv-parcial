@@ -1,4 +1,5 @@
 const {Schema, model} = require("mongoose")
+
 const newUser = new Schema({
     nombre: {
         type: String,
@@ -16,4 +17,13 @@ const newUser = new Schema({
         type: String,
         required: true
     },
+    isActive:{
+        type: Boolean,
+        default:true
+    }
+},{
+    versionKey:false,
+    timestamps:true
 })
+
+module.exports = model("user",newUser)
