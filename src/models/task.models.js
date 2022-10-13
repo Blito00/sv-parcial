@@ -10,7 +10,10 @@ const newTask = new Schema({
     },
     estado: {
         type: Boolean,
-        required: true
+        default: false
+    },
+    userId: {
+        type: Schema.Types.ObjectId, ref: 'user'
     }
     },
     {

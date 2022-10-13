@@ -11,14 +11,17 @@ ctrl.getUser = async (req, res) =>{
 
 ctrl.postUser = async (req, res) => {
         try {
-            const {username, email, password} = req.body
-            const newUser = new UserModel({username,email,password})
+            const {username, email, password} = req.body 
+            const passCrypt = bcrypt.hashSync(password, 10)
+            const newUser = new UserModel({username,email,password: passCrypt}) 
             const saveUser = await newUser.save()
             return res.status(200).json({
                 msg: "El usuario se creó correctamente."
             })
         } catch (error) {
+            console.log(error)
             res.json({
+                
                 msg: `Se ha encontrado un ${error}`
             })
         }

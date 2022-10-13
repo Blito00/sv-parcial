@@ -21,5 +21,9 @@ const newUser = new Schema({
     versionKey:false,
     timestamps:true
 })
-
+newUser.methods.toJSON = function () {
+    const { password, _id, ...user} = this.toObject()
+    user.uid = _id
+    return user
+}
 module.exports = model("user",newUser)
