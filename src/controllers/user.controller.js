@@ -1,4 +1,5 @@
 const UserModel = require('../models/user.models.js');
+const bcrypt = require("bcrypt")
 const ctrl = {}
 
 
@@ -10,11 +11,11 @@ ctrl.getUser = async (req, res) =>{
 
 ctrl.postUser = async (req, res) => {
         try {
-            const {nombre, apellido, email, password} = req.body
-            const newUser = new UserModel({nombre,apellido,email,password})
+            const {username, email, password} = req.body
+            const newUser = new UserModel({username,email,password})
             const saveUser = await newUser.save()
             return res.status(200).json({
-                msg: "El usuario se creó correctamente." + newUser
+                msg: "El usuario se creó correctamente."
             })
         } catch (error) {
             res.json({
@@ -26,9 +27,9 @@ ctrl.postUser = async (req, res) => {
 ctrl.putUser = async (req, res) => {
     try {
         const idUser=req.params.idUser
-        const {nombre, apellido, email, password} = req.body
+        const {username, email, password} = req.body
         const user = await UserModel.findById(idUser)
-        await user.updateOne({nombre, apellido, email, password})
+        await user.updateOne({username, email, password})
         return res.status(200).json({
             msg: "Se actualizo correctamente el usuario."
         })
@@ -57,4 +58,4 @@ ctrl.deleteUser = async (req, res) => {
 }
 
 
-module.exports = ctrl;
+module.exports = ctrl

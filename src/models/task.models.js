@@ -7,6 +7,10 @@ const newTask = new Schema({
     description: {
         type: String,
         required: true
+    },
+    estado: {
+        type: Boolean,
+        required: true
     }
     },
     {

@@ -1,7 +1,7 @@
 const Model = require("../models/task.models")
 
 const CtrlTask = {}
-
+//Obtener tarea
 CtrlTask.getTask = async (req, res) =>{
 try {
     const tarea = await Model.find()
@@ -15,6 +15,7 @@ try {
     })
 }
 } 
+//Crear tarea
 CtrlTask.postTask = async (req, res) =>{
     try {
         const {title, description} = req.body
@@ -29,6 +30,8 @@ CtrlTask.postTask = async (req, res) =>{
         })
     }
 }
+
+
 
 
 

@@ -3,6 +3,7 @@ const express = require("express")
 const morgan = require("morgan")
 const cors = require("cors")
 const connection = require("./db/connection")
+
 require("dotenv").config()
 
 //incicializar express
@@ -17,6 +18,7 @@ connection()
 //rutas
 app.use(require('./routes/user.routes'))
 app.use(require('./routes/task.routes'))
+app.use(require('./routes/auth.routes'))
 
 //definir puerto
 app.listen(PORT, console.log(`Servidor iniciado en http://localhost:${PORT}`))
