@@ -29,10 +29,10 @@ ctrl.postUser = async (req, res) => {
 
 ctrl.putUser = async (req, res) => {
     try {
-        const idUser=req.params.idUser
+        const userId=req.params.userId
         const {username, email, password} = req.body
-        const user = await UserModel.findById(idUser)
-        await user.updateOne({username, email, password})
+        const user = await UserModel.findById(userId)
+        await UserModel.findByIdAndUpdate(user._id, {username, email, password})
         return res.status(200).json({
             msg: "Se actualizo correctamente el usuario."
         })

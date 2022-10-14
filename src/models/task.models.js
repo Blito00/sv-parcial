@@ -14,6 +14,10 @@ const newTask = new Schema({
     },
     userId: {
         type: Schema.Types.ObjectId, ref: 'user'
+    },
+    isActive: {
+        type:Boolean,
+        default: true
     }
     },
     {

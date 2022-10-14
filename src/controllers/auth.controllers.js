@@ -32,7 +32,7 @@ ctrlAuth.login = async (req, res) => {
         return res.json({token});
         
     } catch (error) {
-        return res.status(500).json({message:'Error al iniciar sesión',error: error.message || error })/
+        return res.status(500).json({message:'Error al iniciar sesión',error: error.message || error })
     }
 }
 
