@@ -23,14 +23,14 @@ CtrlTask.getTask_idUser = async (req, res) => {
         .populate('userId',['username', 'email'])
         if(!Tasks.length){
             return res.status(404).json({
-                message: 'No se encontraron tareas con ese usuario'
+                message: 'No se encontraron tareas con ese usuario.'
             });
         }
         return res.json({Tasks})
     } catch (error) {
         return res.status(500).json(
             {
-                msg: 'No se pudo obtener las tareas',
+                msg: 'No se pudo obtener las tareas.',
                 errorBody: error.message
             }
         )
@@ -52,13 +52,29 @@ CtrlTask.postTask = async (req, res) =>{
         })
     }
 }
-//Borar tarea
+//Actualizar tarea
+CtrlTask.updateTask = async (req, res) => {
+    const id=req.params.id
+    try { 
+        const {title , description} = req.body;
+        await Model.findByIdAndUpdate(id, {title, description})
+        return res.status(200).json({
+            msg: "Se actualizo correctamente la tarea."
+        })
+    } catch (error) {
+        return res.json({
+            msg: `Se ha encontrado un ${error}`
+        })
+        
+    }
+}
+//Borrar tarea
 CtrlTask.deleteTask = async (req, res) => {
     const id=req.params.id
     try {
         await Model.findByIdAndUpdate(id, {isActive: false})
         return res.status(200).json({
-            msg: "Se borro correctamente la tarea"
+            msg: "Se borro correctamente la tarea."
         })
     } catch (error) {
         return res.json({
